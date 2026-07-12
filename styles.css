@@ -67,26 +67,24 @@ button, input { font: inherit; }
 .project-card { --accent: var(--mint); min-height: 300px; display: grid; grid-template-rows: 1fr auto; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); box-shadow: 0 12px 34px rgba(32, 48, 38, .07); transition: transform .18s ease, box-shadow .18s ease; }
 .project-card:hover { transform: translateY(-4px); box-shadow: 0 20px 44px rgba(32, 48, 38, .12); }
 .accent-mint { --accent: var(--mint); } .accent-sky { --accent: var(--sky); } .accent-coral { --accent: var(--coral); } .accent-gold { --accent: var(--gold); } .accent-lavender { --accent: var(--lavender); }
-.card-preview { position: relative; min-height: 238px; display: grid; place-items: center; overflow: hidden; padding: 64px 24px 34px; background: linear-gradient(155deg, color-mix(in srgb, var(--accent) 10%, white), #fff 68%); }
-.card-copy { position: relative; width: 100%; text-align: center; }
-.card-preview h2 { margin: 0 0 14px; font-size: clamp(1.6rem, 2.2vw, 2rem); letter-spacing: -.045em; }
+.card-preview { position: relative; min-height: 238px; overflow: hidden; background: linear-gradient(155deg, color-mix(in srgb, var(--accent) 10%, white), #fff 68%); }
+.project-open-link { position: absolute; inset: 0; display: grid; place-items: center; color: var(--ink); text-decoration: none; padding: 58px 24px 34px; }
+.project-open-link:hover, .project-open-link:focus-visible { background: color-mix(in srgb, var(--accent) 7%, transparent); outline: none; }
+.card-preview h2 { margin: 0; font-size: clamp(1.6rem, 2.2vw, 2rem); letter-spacing: -.045em; text-align: center; }
 .edit-card-button { position: absolute; top: 18px; right: 18px; z-index: 2; min-height: 34px; border: 1px solid rgba(27, 33, 29, .14); border-radius: 999px; background: rgba(255, 255, 255, .84); color: var(--ink); cursor: pointer; font-size: .72rem; font-weight: 800; padding: 0 12px; backdrop-filter: blur(8px); }
 .edit-card-button:hover, .edit-card-button:focus-visible { border-color: rgba(27, 33, 29, .35); background: #fff; outline: none; }
-.notes-row { display: flex; align-items: center; justify-content: center; gap: 7px; }
 .notes-link { min-height: 32px; display: inline-flex; align-items: center; gap: 5px; border: 0; background: transparent; color: var(--muted); cursor: pointer; font-size: .78rem; font-weight: 750; padding: 0; text-underline-offset: 3px; }
 .notes-link:hover, .notes-link:focus-visible { color: var(--ink); outline: none; text-decoration: underline; }
 .notes-empty { font-style: italic; }
-.copy-notes-button { position: relative; width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid rgba(27, 33, 29, .13); border-radius: 9px; background: rgba(255, 255, 255, .72); cursor: pointer; }
-.copy-notes-button span, .copy-notes-button span::after { width: 11px; height: 13px; display: block; border: 1.5px solid var(--muted); border-radius: 2px; }
-.copy-notes-button span { position: relative; transform: translate(2px, -2px); }
-.copy-notes-button span::after { position: absolute; top: 3px; left: -4px; background: rgba(255,255,255,.92); content: ""; }
-.copy-notes-button:hover:not(:disabled), .copy-notes-button:focus-visible { border-color: rgba(27, 33, 29, .35); outline: none; }
+.copy-notes-button { width: 32px; height: 32px; display: grid; place-items: center; border: 0; border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer; padding: 0; }
+.copy-notes-button svg { display: block; }
+.copy-notes-button:hover:not(:disabled), .copy-notes-button:focus-visible { background: #eef2ed; color: var(--ink); outline: none; }
 .copy-notes-button:disabled { cursor: not-allowed; opacity: .4; }
 .copy-notes-button.copied { border-color: var(--mint); background: color-mix(in srgb, var(--mint) 14%, white); }
 .card-actions { display: grid; grid-template-columns: 1fr auto; border-top: 1px solid var(--line); }
-.card-actions a { min-height: 58px; display: flex; align-items: center; justify-content: center; color: var(--ink); font-size: .82rem; font-weight: 800; text-decoration: none; padding: 0 18px; transition: background .16s ease; }
-.card-actions a + a { min-width: 92px; border-left: 1px solid var(--line); color: var(--muted); }
-.card-actions a:hover, .card-actions a:focus-visible { background: #f2f5f1; outline: none; }
+.notes-action { min-height: 58px; display: flex; align-items: center; justify-content: center; gap: 7px; padding: 0 14px; }
+.source-link { min-width: 92px; min-height: 58px; display: flex; align-items: center; justify-content: center; border-left: 1px solid var(--line); color: var(--muted); font-size: .82rem; font-weight: 800; text-decoration: none; padding: 0 18px; transition: background .16s ease; }
+.source-link:hover, .source-link:focus-visible { background: #f2f5f1; outline: none; }
 .empty-state { margin: 70px 0; color: var(--muted); text-align: center; }
 
 .project-drawer { position: fixed; inset: 0 auto 0 0; z-index: 40; width: min(340px, calc(100vw - 50px)); border-right: 1px solid var(--line); border-radius: 0 22px 22px 0; background: #fff; box-shadow: 24px 0 70px rgba(31, 47, 36, .16); padding: 24px 16px; transform: translateX(calc(-100% - 28px)); transition: transform .2s ease; }
