@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A dashboard for Chandler Seeley's GitHub Pages projects." />
+    <title>Project Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="site-topbar">
+        <a class="site-brand" href="index.html">Dashboard</a>
+        <a class="profile-chip" href="https://github.com/chandlerseeley" target="_blank" rel="noreferrer">GitHub profile</a>
+        <button class="menu-button" type="button" aria-label="Open menu" aria-controls="projectDrawer" data-drawer-open>
+          <span></span><span></span>
+        </button>
+      </header>
+
+      <aside class="tool-drawer" id="projectDrawer" aria-label="Project dashboard menu" aria-hidden="true">
+        <div class="drawer-heading">
+          <strong>Project Dashboard</strong>
+          <button class="drawer-close" type="button" aria-label="Close menu" data-drawer-close>x</button>
+        </div>
+        <nav class="drawer-nav" aria-label="Dashboard links">
+          <a class="drawer-link active" href="index.html" aria-current="page">All Projects</a>
+          <a class="drawer-link" href="https://github.com/chandlerseeley" target="_blank" rel="noreferrer">GitHub Profile</a>
+        </nav>
+      </aside>
+      <div class="drawer-backdrop" data-drawer-close hidden></div>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <div>
+            <span class="kicker">GitHub Pages collection</span>
+            <h1>Project Dashboard</h1>
+            <p>One home for the tools, experiments, and small ideas I ship on the web.</p>
+          </div>
+          <div class="hero-stat">
+            <strong id="projectCount">0</strong>
+            <span>live projects</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard">
+        <aside class="control-panel" aria-label="Project filters">
+          <div class="panel-section">
+            <div class="section-heading">
+              <h2>Find a project</h2>
+              <button class="mini-button" id="clearFilters" type="button">Reset</button>
+            </div>
+            <label class="field">
+              <span>Search</span>
+              <input id="projectSearch" type="search" placeholder="Name, description, or tag" autocomplete="off" />
+            </label>
+            <label class="field">
+              <span>Category</span>
+              <select id="categoryFilter">
+                <option value="all">All categories</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="panel-section">
+            <div class="section-heading">
+              <h2>About</h2>
+              <span>Auto-generated</span>
+            </div>
+            <p class="panel-copy">Projects live in one small data file, making this dashboard easy to update by hand or with an AI skill.</p>
+            <a class="primary-button" href="https://github.com/chandlerseeley/project-dashboard" target="_blank" rel="noreferrer">View dashboard source</a>
+          </div>
+        </aside>
+
+        <section class="results-panel" aria-label="Projects">
+          <div class="results-heading">
+            <div>
+              <span class="eyebrow">Published work</span>
+              <h2>Projects</h2>
+            </div>
+            <span id="resultSummary">Loading projects...</span>
+          </div>
+          <div class="project-grid" id="projectGrid"></div>
+          <div class="empty-state" id="emptyState" hidden>
+            <strong>No matching projects</strong>
+            <p>Try clearing the search or choosing another category.</p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="projects.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
