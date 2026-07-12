@@ -14,7 +14,7 @@ Keep the project catalog accurate and the site buildable.
    - Repository: `https://github.com/{owner}/{repo}`
    - Default Pages site: `https://{owner}.github.io/{repo}/`
    - For an `{owner}.github.io` repository, use `https://{owner}.github.io/`.
-3. Prefer repository metadata or user-provided copy for the title, description, tags, and year. Do not invent claims about project behavior. If essential metadata is unavailable, use a concise title derived from the repository name and a factual one-line description.
+3. Prefer repository metadata or user-provided copy for the title, description, tags, and year. Do not invent claims about project behavior. If essential metadata is unavailable, use a concise title derived from the repository name and a factual one-line description. Include the supplied Notion page as `notesUrl`; use an empty string when no notes page is available yet.
 4. Add one object to `window.PROJECTS` or update the existing object with the same `slug` or `repoUrl`. Never create duplicates.
 5. Use a lowercase kebab-case `slug`, a concise category, at most three short tags, and one of the existing `accent` values. Rotate accents when practical so adjacent cards differ.
 6. Put newly added projects first unless the user requests another order.
