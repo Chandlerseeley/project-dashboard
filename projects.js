@@ -8,6 +8,7 @@ window.PROJECTS = [
     tags: ["Dashboard", "Calculator", "JavaScript"],
     siteUrl: "https://chandlerseeley.github.io/money-flow/",
     repoUrl: "https://github.com/chandlerseeley/money-flow",
+    notesUrl: "",
     accent: "mint",
     status: "Live",
   },
