@@ -41,13 +41,17 @@
       <section class="edit-modal" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
         <div class="modal-heading">
           <div>
-            <span>Edit links</span>
+            <span>Edit project</span>
             <h2 id="editModalTitle">Project</h2>
           </div>
           <button class="close-button" type="button" aria-label="Close editor" data-edit-close>×</button>
         </div>
         <form id="editLinksForm">
           <input id="editProjectSlug" type="hidden" />
+          <label>
+            <span>Project name</span>
+            <input id="editProjectTitle" type="text" placeholder="Project name" required />
+          </label>
           <label>
             <span>Project URL</span>
             <input id="editSiteUrl" type="url" placeholder="https://..." required />
