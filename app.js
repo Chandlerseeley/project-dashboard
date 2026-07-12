@@ -28,22 +28,24 @@ function projectCard(project) {
   article.className = `project-card accent-${project.accent || "mint"}`;
   article.innerHTML = `
     <div class="card-preview">
-      <button class="edit-card-button" type="button" data-edit-project="${escapeHtml(project.slug)}" aria-label="Edit ${escapeHtml(project.title)}">Edit</button>
-      <div class="card-copy">
+      <a class="project-open-link" href="${escapeHtml(project.siteUrl)}" target="_blank" rel="noreferrer" aria-label="Open ${escapeHtml(project.title)}">
         <h2>${escapeHtml(project.title)}</h2>
-        <div class="notes-row">
-          ${notesReady
-            ? `<a class="notes-link" href="${escapeHtml(project.notesUrl)}" target="_blank" rel="noreferrer">Notes <span aria-hidden="true">↗</span></a>`
-            : `<button class="notes-link notes-empty" type="button" data-edit-project="${escapeHtml(project.slug)}">Add notes link</button>`}
-          <button class="copy-notes-button" type="button" data-copy-notes="${escapeHtml(project.slug)}" aria-label="Copy ${escapeHtml(project.title)} notes link" ${notesReady ? "" : "disabled"}>
-            <span aria-hidden="true"></span>
-          </button>
-        </div>
-      </div>
+      </a>
+      <button class="edit-card-button" type="button" data-edit-project="${escapeHtml(project.slug)}" aria-label="Edit ${escapeHtml(project.title)}">Edit</button>
     </div>
     <div class="card-actions">
-      <a href="${escapeHtml(project.siteUrl)}" target="_blank" rel="noreferrer">Open project</a>
-      <a href="${escapeHtml(project.repoUrl)}" target="_blank" rel="noreferrer">Source</a>
+      <div class="notes-action">
+        ${notesReady
+          ? `<a class="notes-link" href="${escapeHtml(project.notesUrl)}" target="_blank" rel="noreferrer">Notes <span aria-hidden="true">↗</span></a>`
+          : `<button class="notes-link notes-empty" type="button" data-edit-project="${escapeHtml(project.slug)}">Add notes link</button>`}
+        <button class="copy-notes-button" type="button" data-copy-notes="${escapeHtml(project.slug)}" aria-label="Copy ${escapeHtml(project.title)} notes link" ${notesReady ? "" : "disabled"}>
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+          </svg>
+        </button>
+      </div>
+      <a class="source-link" href="${escapeHtml(project.repoUrl)}" target="_blank" rel="noreferrer">Source</a>
     </div>`;
   return article;
 }
