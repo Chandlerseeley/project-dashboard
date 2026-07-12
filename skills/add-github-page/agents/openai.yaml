@@ -1,0 +1,4 @@
+interface:
+  display_name: "Add GitHub Page"
+  short_description: "Add a project to the GitHub Pages hub"
+  default_prompt: "Use $add-github-page to add my new repository to the project hub."
