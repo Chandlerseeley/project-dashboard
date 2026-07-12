@@ -13,6 +13,7 @@ const editModal = document.querySelector("#editModal");
 const editForm = document.querySelector("#editLinksForm");
 const editTitle = document.querySelector("#editModalTitle");
 const editSlug = document.querySelector("#editProjectSlug");
+const editProjectTitle = document.querySelector("#editProjectTitle");
 const editSiteUrl = document.querySelector("#editSiteUrl");
 const editRepoUrl = document.querySelector("#editRepoUrl");
 const editNotesUrl = document.querySelector("#editNotesUrl");
@@ -27,8 +28,7 @@ function projectCard(project) {
   article.className = `project-card accent-${project.accent || "mint"}`;
   article.innerHTML = `
     <div class="card-preview">
-      <span class="card-mark" aria-hidden="true">${escapeHtml(project.title.slice(0, 1).toUpperCase())}</span>
-      <button class="edit-card-button" type="button" data-edit-project="${escapeHtml(project.slug)}" aria-label="Edit ${escapeHtml(project.title)} links">Edit</button>
+      <button class="edit-card-button" type="button" data-edit-project="${escapeHtml(project.slug)}" aria-label="Edit ${escapeHtml(project.title)}">Edit</button>
       <div class="card-copy">
         <h2>${escapeHtml(project.title)}</h2>
         <div class="notes-row">
@@ -63,12 +63,13 @@ function openEditor(slug) {
   if (!project) return;
   editTitle.textContent = project.title;
   editSlug.value = project.slug;
+  editProjectTitle.value = project.title || "";
   editSiteUrl.value = project.siteUrl || "";
   editRepoUrl.value = project.repoUrl || "";
   editNotesUrl.value = project.notesUrl || "";
   editModal.hidden = false;
   document.body.classList.add("modal-open");
-  editSiteUrl.focus();
+  editProjectTitle.focus();
 }
 
 function closeEditor() {
@@ -125,10 +126,11 @@ editForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const project = projects.find((item) => item.slug === editSlug.value);
   if (!project) return;
+  project.title = editProjectTitle.value.trim();
   project.siteUrl = editSiteUrl.value.trim();
   project.repoUrl = editRepoUrl.value.trim();
   project.notesUrl = editNotesUrl.value.trim();
-  savedLinks[project.slug] = { siteUrl: project.siteUrl, repoUrl: project.repoUrl, notesUrl: project.notesUrl };
+  savedLinks[project.slug] = { title: project.title, siteUrl: project.siteUrl, repoUrl: project.repoUrl, notesUrl: project.notesUrl };
   localStorage.setItem(storageKey, JSON.stringify(savedLinks));
   closeEditor();
   renderProjects();
