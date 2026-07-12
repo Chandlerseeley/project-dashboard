@@ -15,7 +15,7 @@
 * { box-sizing: border-box; }
 html { min-height: 100%; background: var(--paper); }
 body { min-height: 100%; margin: 0; color: var(--ink); background: var(--paper); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-body.drawer-open { overflow: hidden; }
+body.drawer-open, body.modal-open { overflow: hidden; }
 button, input { font: inherit; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
 
@@ -70,7 +70,21 @@ button, input { font: inherit; }
 .card-preview { position: relative; min-height: 238px; display: flex; align-items: flex-end; overflow: hidden; padding: 24px; background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 17%, white), #fff 72%); }
 .card-preview::before { position: absolute; top: -74px; right: -58px; width: 190px; height: 190px; border: 28px solid color-mix(in srgb, var(--accent) 25%, white); border-radius: 50%; content: ""; }
 .card-mark { position: absolute; top: 20px; right: 24px; color: color-mix(in srgb, var(--accent) 42%, white); font-size: 7rem; font-weight: 900; line-height: 1; }
-.card-preview h2 { position: relative; margin: 0; font-size: 1.5rem; letter-spacing: -.035em; }
+.card-copy { position: relative; z-index: 1; }
+.card-preview h2 { margin: 0 0 10px; font-size: 1.5rem; letter-spacing: -.035em; }
+.edit-card-button { position: absolute; top: 18px; right: 18px; z-index: 2; min-height: 34px; border: 1px solid rgba(27, 33, 29, .14); border-radius: 999px; background: rgba(255, 255, 255, .84); color: var(--ink); cursor: pointer; font-size: .72rem; font-weight: 800; padding: 0 12px; backdrop-filter: blur(8px); }
+.edit-card-button:hover, .edit-card-button:focus-visible { border-color: rgba(27, 33, 29, .35); background: #fff; outline: none; }
+.notes-row { display: flex; align-items: center; gap: 7px; }
+.notes-link { min-height: 32px; display: inline-flex; align-items: center; gap: 5px; border: 0; background: transparent; color: var(--muted); cursor: pointer; font-size: .78rem; font-weight: 750; padding: 0; text-underline-offset: 3px; }
+.notes-link:hover, .notes-link:focus-visible { color: var(--ink); outline: none; text-decoration: underline; }
+.notes-empty { font-style: italic; }
+.copy-notes-button { position: relative; width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid rgba(27, 33, 29, .13); border-radius: 9px; background: rgba(255, 255, 255, .72); cursor: pointer; }
+.copy-notes-button span, .copy-notes-button span::after { width: 11px; height: 13px; display: block; border: 1.5px solid var(--muted); border-radius: 2px; }
+.copy-notes-button span { position: relative; transform: translate(2px, -2px); }
+.copy-notes-button span::after { position: absolute; top: 3px; left: -4px; background: rgba(255,255,255,.92); content: ""; }
+.copy-notes-button:hover:not(:disabled), .copy-notes-button:focus-visible { border-color: rgba(27, 33, 29, .35); outline: none; }
+.copy-notes-button:disabled { cursor: not-allowed; opacity: .4; }
+.copy-notes-button.copied { border-color: var(--mint); background: color-mix(in srgb, var(--mint) 14%, white); }
 .card-actions { display: grid; grid-template-columns: 1fr auto; border-top: 1px solid var(--line); }
 .card-actions a { min-height: 58px; display: flex; align-items: center; justify-content: center; color: var(--ink); font-size: .82rem; font-weight: 800; text-decoration: none; padding: 0 18px; transition: background .16s ease; }
 .card-actions a + a { min-width: 92px; border-left: 1px solid var(--line); color: var(--muted); }
@@ -87,6 +101,23 @@ button, input { font: inherit; }
 .project-drawer nav a:hover, .project-drawer nav a[aria-current="page"] { background: #f0f3ef; }
 .drawer-backdrop { position: fixed; inset: 0; z-index: 30; border: 0; background: rgba(23, 32, 26, .2); }
 .drawer-backdrop[hidden] { display: none; }
+
+.modal-backdrop { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; background: rgba(23, 32, 26, .28); padding: 18px; }
+.modal-backdrop[hidden] { display: none; }
+.edit-modal { width: min(520px, 100%); overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: #fff; box-shadow: 0 28px 80px rgba(23, 32, 26, .2); }
+.modal-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid var(--line); padding: 20px 22px; }
+.modal-heading span { display: block; margin-bottom: 3px; color: var(--muted); font-size: .7rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.modal-heading h2 { margin: 0; font-size: 1.3rem; }
+.edit-modal form { display: grid; gap: 15px; padding: 22px; }
+.edit-modal label { display: grid; gap: 7px; }
+.edit-modal label span { color: var(--muted); font-size: .78rem; font-weight: 750; }
+.edit-modal input[type="url"] { width: 100%; height: 44px; border: 1px solid var(--line); border-radius: 9px; background: #fbfcfa; color: var(--ink); outline: none; padding: 0 12px; }
+.edit-modal input[type="url"]:focus { border-color: #8ca097; box-shadow: 0 0 0 4px rgba(79, 191, 138, .13); }
+.modal-actions { display: flex; justify-content: flex-end; gap: 9px; border-top: 1px solid var(--line); margin-top: 5px; padding-top: 17px; }
+.cancel-button, .save-button { min-height: 40px; border-radius: 9px; cursor: pointer; font-size: .8rem; font-weight: 800; padding: 0 15px; }
+.cancel-button { border: 1px solid var(--line); background: #fff; color: var(--ink); }
+.save-button { border: 1px solid var(--ink); background: var(--ink); color: #fff; }
+.cancel-button:hover, .save-button:hover { transform: translateY(-1px); }
 
 @media (max-width: 700px) {
   .site-header { min-height: 82px; grid-template-columns: auto 1fr; gap: 12px; padding: 14px 16px; }
