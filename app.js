@@ -36,7 +36,7 @@ function projectCard(project) {
     <div class="card-actions">
       <div class="notes-action">
         ${notesReady
-          ? `<a class="notes-link" href="${escapeHtml(project.notesUrl)}" target="_blank" rel="noreferrer">Notes <span aria-hidden="true">↗</span></a>`
+          ? `<a class="notes-link" href="${escapeHtml(project.notesUrl)}" target="_blank" rel="noreferrer">Notes</a>`
           : `<button class="notes-link notes-empty" type="button" data-edit-project="${escapeHtml(project.slug)}">Add notes link</button>`}
         <button class="copy-notes-button" type="button" data-copy-notes="${escapeHtml(project.slug)}" aria-label="Copy ${escapeHtml(project.title)} notes link" ${notesReady ? "" : "disabled"}>
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

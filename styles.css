@@ -81,9 +81,9 @@ button, input { font: inherit; }
 .copy-notes-button:hover:not(:disabled), .copy-notes-button:focus-visible { background: #eef2ed; color: var(--ink); outline: none; }
 .copy-notes-button:disabled { cursor: not-allowed; opacity: .4; }
 .copy-notes-button.copied { border-color: var(--mint); background: color-mix(in srgb, var(--mint) 14%, white); }
-.card-actions { display: grid; grid-template-columns: 1fr auto; border-top: 1px solid var(--line); }
+.card-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); }
 .notes-action { min-height: 58px; display: flex; align-items: center; justify-content: center; gap: 7px; padding: 0 14px; }
-.source-link { min-width: 92px; min-height: 58px; display: flex; align-items: center; justify-content: center; border-left: 1px solid var(--line); color: var(--muted); font-size: .82rem; font-weight: 800; text-decoration: none; padding: 0 18px; transition: background .16s ease; }
+.source-link { min-height: 58px; display: flex; align-items: center; justify-content: center; border-left: 1px solid var(--line); color: var(--muted); font-size: .82rem; font-weight: 800; text-decoration: none; padding: 0 18px; transition: background .16s ease; }
 .source-link:hover, .source-link:focus-visible { background: #f2f5f1; outline: none; }
 .empty-state { margin: 70px 0; color: var(--muted); text-align: center; }
 
